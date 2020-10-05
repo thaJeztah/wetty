@@ -4,6 +4,7 @@ import { expect } from 'chai';
 import 'mocha';
 import * as sinon from 'sinon';
 
+import { JSDOM } from 'jsdom';
 import { FileDownloader } from './download';
 
 describe('FileDownloader', () => {
@@ -12,6 +13,8 @@ describe('FileDownloader', () => {
   let fileDownloader: any;
 
   beforeEach(() => {
+    const { window } = new JSDOM(`...`);
+    global.document = window.document;
     fileDownloader = new FileDownloader(() => {}, FILE_BEGIN, FILE_END);
   });
 
